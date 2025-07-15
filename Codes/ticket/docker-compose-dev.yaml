@@ -4,7 +4,7 @@ services:
     image: postgres:16-alpine
     ports:
       # HOST:CONTAINER
-      - "5432:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_USER=pgsql-ticket-master
       - POSTGRES_PASSWORD=pgsql-ticket-password  
