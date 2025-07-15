@@ -1,111 +1,53 @@
-Este documento descreve os endpoints disponíveis no microsserviço de Vendas.
+GET http://localhost:4000/events
 
-**URL Base**: `http://localhost:4000`
 
-Retorna uma lista de todos os eventos.
+GET http://localhost:4000/events/c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4
 
--   **Resposta (200 OK)**:
-    ```json
-    [
-      {
-        "id": "c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4",
-        "description": "Show da Banda X",
-        "type": "SHOW",
-        "date": "2025-10-20T20:00:00",
-        "startSales": "2025-08-01T09:00:00",
-        "endSales": "2025-10-19T23:59:59",
-        "price": 150.0,
-        "createdAt": "2025-07-15T10:00:00",
-        "updatedAt": "2025-07-15T10:00:00"
-      }
-    ]
-    ```
+POST http://localhost:4000/events
+Content-Type: application/json
 
-Busca um evento específico pelo seu ID.
+{
+    "description": "Peça de Teatro Y",
+    "type": "TEATRO",
+    "date": "2025-11-15T21:00:00",
+    "startSales": "2025-09-01T09:00:00",
+    "endSales": "2025-11-14T23:59:59",
+    "price": 80.50
+}
 
--   **Resposta (200 OK)**: Corpo da resposta igual ao do exemplo acima, mas com um único objeto.
 
-Cria um novo evento.
+PUT http://localhost:4000/events/c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4
+Content-Type: application/json
 
--   **Corpo da Requisição**:
-    ```json
-    {
-      "description": "Peça de Teatro Y",
-      "type": "TEATRO",
-      "date": "2025-11-15T21:00:00",
-      "startSales": "2025-09-01T09:00:00",
-      "endSales": "2025-11-14T23:59:59",
-      "price": 80.50
-    }
-    ```
--   **Resposta (201 Created)**: Retorna o objeto do evento criado, incluindo o `id` e `timestamps`.
+{
+    "description": "Show da Banda X - Nova Data",
+    "price": 175.0
+}
 
-### `PUT /events/{id}`
 
-Atualiza um evento existente.
+DELETE http://localhost:4000/events/c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4
 
--   **Corpo da Requisição**: Mesma estrutura do `POST`.
--   **Resposta (200 OK)**: Retorna o objeto do evento atualizado.
 
-### `DELETE /events/{id}`
+POST http://localhost:4000/sales
+Content-Type: application/json
 
-Remove um evento.
+{
+    "userId": "a8f8e0d5-7b6c-4b3a-8f7e-2a3b4c5d6e7f",
+    "eventId": "c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4"
+}
 
--   **Resposta (204 No Content)**: Sem corpo na resposta.
 
----
+GET http://localhost:4000/sales/f4b3a2c1-d0e9-4f8a-a2b1-1a2b3c4d5e6f
 
-## Vendas (`/sales`)
 
-### `POST /sales`
+GET http://localhost:4000/sales/user/a8f8e0d5-7b6c-4b3a-8f7e-2a3b4c5d6e7f
 
-Cria uma nova venda (compra de ingresso).
 
--   **Corpo da Requisição**:
-    ```json
-    {
-      "userId": "a8f8e0d5-7b6c-4b3a-8f7e-2a3b4c5d6e7f",
-      "eventId": "c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4"
-    }
-    ```
--   **Resposta (201 Created)**:
-    ```json
-    {
-      "id": "f4b3a2c1-d0e9-4f8a-a2b1-1a2b3c4d5e6f",
-      "userId": "a8f8e0d5-7b6c-4b3a-8f7e-2a3b4c5d6e7f",
-      "eventId": "c6e9a7e8-f7b7-4c4e-b2f7-2d46d7a469a4",
-      "eventDescription": "Show da Banda X",
-      "saleDate": "2025-08-05T14:30:00",
-      "saleStatus": "EM_ABERTO"
-    }
-    ```
+PATCH http://localhost:4000/sales/f4b3a2c1-d0e9-4f8a-a2b1-1a2b3c4d5e6f/status
+Content-Type: application/json
 
-### `GET /sales/{id}`
+{
+    "newStatus": "PAGO"
+}
 
-Busca uma venda específica pelo seu ID.
-
--   **Resposta (200 OK)**: Corpo da resposta igual ao do exemplo acima.
-
-### `GET /sales/user/{userId}`
-
-Busca todas as vendas de um usuário específico.
-
--   **Resposta (200 OK)**: Uma lista de objetos de venda.
-
-### `PATCH /sales/{id}/status`
-
-Atualiza o status de uma venda (ex: para "PAGO").
-
--   **Corpo da Requisição**:
-    ```json
-    {
-      "newStatus": "PAGO"
-    }
-    ```
--   **Resposta (200 OK)**: Retorna o objeto da venda com o status atualizado.
-
-### `DELETE /sales/{id}`
-
-Remove uma venda.
-
--   **Resposta (204 No Content)**: Sem corpo na resposta.
+DELETE http://localhost:4000/sales/f4b3a2c1-d0e9-4f8a-a2b1-1a2b3c4d5e6f
