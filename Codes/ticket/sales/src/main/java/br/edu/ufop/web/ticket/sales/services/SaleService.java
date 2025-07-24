@@ -2,13 +2,16 @@ package br.edu.ufop.web.ticket.sales.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import br.edu.ufop.web.ticket.sales.converters.SaleConverter;
+import br.edu.ufop.web.ticket.sales.domain.SaleDomain;
 import br.edu.ufop.web.ticket.sales.dtos.CreateSaleDTO;
+import br.edu.ufop.web.ticket.sales.dtos.DeleteSaleDTO;
 import br.edu.ufop.web.ticket.sales.dtos.SaleDTO;
 import br.edu.ufop.web.ticket.sales.dtos.UpdateSaleStatusDTO;
 import br.edu.ufop.web.ticket.sales.enums.SaleStatus;
@@ -25,7 +28,12 @@ public class SaleService {
 
     private final ISaleRepository saleRepository;
     private final IEventRepository eventRepository;
-    private final SaleConverter saleConverter;
+
+    public List<SaleDTO> getAllSales() {
+        return saleRepository.findAll().stream()
+                .map(SaleConverter::toDTO)
+                .collect(Collectors.toList());
+    }
 
     public SaleDTO createSale(CreateSaleDTO createSaleDTO) {
         EventModel event = eventRepository.findById(createSaleDTO.getEventId())
@@ -36,42 +44,51 @@ public class SaleService {
             throw new IllegalStateException("Sales are not open for this event.");
         }
 
-        SaleModel saleModel = SaleModel.builder()
-                .userId(createSaleDTO.getUserId())
-                .event(event)
-                .saleStatus(SaleStatus.EM_ABERTO) // Inicia com status "Em aberto"
-                .build();
+        SaleDomain saleDomain = SaleConverter.toDomain(createSaleDTO);
+        saleDomain.setEventId(event);
+        saleDomain.setSaleDate(now);
+        if (saleDomain.getSaleStatus() == null) {
+            saleDomain.setSaleStatus(SaleStatus.EM_ABERTO); // Default status
+        }
+
         
-        saleModel = saleRepository.save(saleModel);
-        return saleConverter.toDTO(saleModel);
+        SaleModel saleModel = SaleConverter.toModel(saleDomain);
+        return SaleConverter.toDTO(saleRepository.save(saleModel));
     }
 
-    public SaleDTO getSaleById(UUID id) {
-        SaleModel sale = saleRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Sale not found with id: " + id));
-        return saleConverter.toDTO(sale);
+    public SaleDTO getSaleById(String id) {
+        UUID saleId = UUID.fromString(id);
+        Optional<SaleModel> saleOptional = saleRepository.findById(saleId);
+        if(saleOptional.isPresent()){
+            SaleModel sale = saleOptional.get();
+            return SaleConverter.toDTO(sale);
+        }
+        return null;
     }
 
-    public List<SaleDTO> getSalesByUserId(UUID userId) {
-        return saleRepository.findByUserId(userId).stream()
-                .map(saleConverter::toDTO)
+    public List<SaleDTO> getSalesByUserId(String Id) {
+        UUID userId = UUID.fromString(Id);
+        List<SaleModel> sales = saleRepository.findByUserId(userId);
+        return sales.stream()
+                .map(SaleConverter::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public SaleDTO updateSaleStatus(UUID id, UpdateSaleStatusDTO updateSaleStatusDTO) {
-        SaleModel sale = saleRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Sale not found with id: " + id));
-        
+    public SaleDTO updateSaleStatus(UpdateSaleStatusDTO updateSaleStatusDTO) {
+        Optional<SaleModel> saleOptional = saleRepository.findById(updateSaleStatusDTO.getSaleId());
+        if(!saleOptional.isPresent()) {
+            return null;
+        }
+        SaleModel sale = saleOptional.get();
         sale.setSaleStatus(updateSaleStatusDTO.getNewStatus());
-        sale = saleRepository.save(sale);
-        return saleConverter.toDTO(sale);
+        return SaleConverter.toDTO(saleRepository.save(sale));
     }
 
-    public void deleteSale(UUID id) {
-        if (!saleRepository.existsById(id)) {
-            throw new EntityNotFoundException("Sale not found with id: " + id);
+    public void deleteSale(DeleteSaleDTO deleteSaleDTO) {
+        Optional<SaleModel> saleOptional = saleRepository.findById(deleteSaleDTO.id());
+        if(saleOptional.isEmpty()) {
+            throw new EntityNotFoundException("Sale not found with id: " + deleteSaleDTO.id());
         }
-
-        saleRepository.deleteById(id);
+        saleRepository.delete(saleOptional.get());
     }
 }

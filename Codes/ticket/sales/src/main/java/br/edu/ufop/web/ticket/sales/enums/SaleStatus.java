@@ -1,10 +1,8 @@
 package br.edu.ufop.web.ticket.sales.enums;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public enum SaleStatus {
     EM_ABERTO(1, "Em aberto"),
     PAGO(2, "Pago"),
@@ -13,4 +11,9 @@ public enum SaleStatus {
 
     private final Integer id;
     private final String description;
+
+    SaleStatus(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 }

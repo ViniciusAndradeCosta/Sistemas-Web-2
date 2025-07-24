@@ -13,14 +13,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventDTO {
-    private UUID id;
-    private String description;
-    private EventType type;
-    private LocalDateTime date;
-    private LocalDateTime startSales;
-    private LocalDateTime endSales;
-    private Float price;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+public class CreateEventDTO {
+  private UUID id;
+  private String description;
+  private EventType type;
+  private LocalDateTime date;
+  private LocalDateTime startSales;
+  private LocalDateTime endSales;
+  private Float price;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }
