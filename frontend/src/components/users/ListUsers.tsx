@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import api from '../../services/api';
+import { useEffect, useState } from "react"
+import api from "../../services/api"
 
 interface UserInterface {
     id: string,
@@ -7,38 +7,45 @@ interface UserInterface {
     email: string
 }
 
-
 const ListUsers = () => {
+    
     // Hook: useState
-    const [users, setUsers] = useState<UserInterface[]>([]);
+    const [ users, setUsers ] = useState<UserInterface[]>([])
 
-    useEffect(() => {
+    // Hook: useEffect
+    useEffect(() =>{
 
-        api('api/users')
+        api('/api/users')
             .then(response => {
                 console.log(response)
-                setUsers
-            })
+                setUsers(response)
+             })
             .catch(error => console.error(error))
+
     }, [])
+
     return(
+
         <div>
-            <h2>Lista de Usuários</h2>
+            <h2>Lista de usuários</h2>
 
             <div>
                 {
-                   users.map( user => (
+                    users.map( user => (
                         <div>
                             <p>{user.id}</p>
                             <p>{user.name}</p>
                             <p>{user.email}</p>
                         </div>
-                   ))
+                    ) )
                 }
             </div>
+
         </div>
 
+
     )
+ 
 }
 
-export default ListUsers;
+export default ListUsers
