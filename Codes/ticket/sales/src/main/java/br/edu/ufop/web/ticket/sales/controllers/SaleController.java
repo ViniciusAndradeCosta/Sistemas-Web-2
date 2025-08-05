@@ -28,6 +28,8 @@ public class SaleController {
 
     private final SaleService saleService;
 
+    
+
     @GetMapping
     public ResponseEntity<List<SaleDTO>> getAllSales() {
         return ResponseEntity.ok(saleService.getAllSales());
