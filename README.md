@@ -2,7 +2,7 @@
 
 Este repositório contém os códigos e atividades desenvolvidos durante a disciplina **Sistemas Web 2**, do curso de **Sistemas de Informação** da Universidade Federal de Ouro Preto (UFOP). O projeto consiste em uma aplicação completa para **venda de ingressos**, construída com uma arquitetura de **microsserviços**, visando separação de responsabilidades, escalabilidade e manutenibilidade.
 
-O backend foi desenvolvido em conjunto com o professor, abordando conceitos práticos de aplicações web modernas com **Java 17 e Spring Boot**, enquanto o frontend foi desenvolvido em **React + TypeScript**, consumindo os serviços do backend e oferecendo uma interface rica e funcional.
+O backend foi desenvolvido em conjunto com o professor, abordando conceitos práticos de aplicações web modernas com **Java 17 e Spring Boot**, enquanto o frontend foi desenvolvido individualmente como parte do trabalho prático 2 em **React + TypeScript**, consumindo os serviços do backend e oferecendo uma interface rica e funcional.
 
 ---
 
