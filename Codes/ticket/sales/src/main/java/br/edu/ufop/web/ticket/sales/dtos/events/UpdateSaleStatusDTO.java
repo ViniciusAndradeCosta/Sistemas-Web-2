@@ -1,8 +1,8 @@
-package br.edu.ufop.web.ticket.sales.dtos;
+package br.edu.ufop.web.ticket.sales.dtos.events;
 
 import java.util.UUID;
 
-import br.edu.ufop.web.ticket.sales.enums.SaleStatus;
+import br.edu.ufop.web.ticket.sales.enums.EnumSaleStatusType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +14,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UpdateSaleStatusDTO {
     private UUID saleId;
-    private SaleStatus newStatus;
+    private EnumSaleStatusType newStatus;
 }

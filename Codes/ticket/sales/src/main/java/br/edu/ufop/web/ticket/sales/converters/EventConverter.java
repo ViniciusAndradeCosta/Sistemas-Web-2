@@ -1,9 +1,9 @@
 package br.edu.ufop.web.ticket.sales.converters;
 
 import br.edu.ufop.web.ticket.sales.domain.EventDomain;
-import br.edu.ufop.web.ticket.sales.dtos.CreateEventDTO;
-import br.edu.ufop.web.ticket.sales.dtos.EventDTO;
-import br.edu.ufop.web.ticket.sales.dtos.UpdateEventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.CreateEventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.EventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.UpdateEventDTO;
 import br.edu.ufop.web.ticket.sales.models.EventModel;
 import lombok.NoArgsConstructor;
 

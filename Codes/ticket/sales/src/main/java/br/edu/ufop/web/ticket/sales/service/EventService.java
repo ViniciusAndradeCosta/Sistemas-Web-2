@@ -1,4 +1,4 @@
-package br.edu.ufop.web.ticket.sales.services;
+package br.edu.ufop.web.ticket.sales.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ufop.web.ticket.sales.converters.EventConverter;
 import br.edu.ufop.web.ticket.sales.domain.EventDomain;
-import br.edu.ufop.web.ticket.sales.dtos.CreateEventDTO;
-import br.edu.ufop.web.ticket.sales.dtos.DeleteEventDTO;
-import br.edu.ufop.web.ticket.sales.dtos.EventDTO;
-import br.edu.ufop.web.ticket.sales.dtos.UpdateEventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.CreateEventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.DeleteEventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.EventDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.UpdateEventDTO;
 import br.edu.ufop.web.ticket.sales.models.EventModel;
 import br.edu.ufop.web.ticket.sales.repositories.IEventRepository;
 import jakarta.persistence.EntityNotFoundException;

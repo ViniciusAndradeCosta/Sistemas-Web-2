@@ -3,7 +3,7 @@ package br.edu.ufop.web.ticket.sales.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import br.edu.ufop.web.ticket.sales.enums.EventType;
+import br.edu.ufop.web.ticket.sales.enums.EnumEventType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -38,7 +38,7 @@ public class EventModel {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EventType type;
+    private EnumEventType type;
 
     @Column(nullable = false)
     private LocalDateTime date;

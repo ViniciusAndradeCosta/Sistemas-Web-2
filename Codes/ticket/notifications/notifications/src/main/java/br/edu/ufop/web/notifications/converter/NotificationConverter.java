@@ -1,42 +1,43 @@
 package br.edu.ufop.web.notifications.converter;
 
-import lombok.NoArgsConstructor;
-import lombok.AccessLevel;
-import br.edu.ufop.web.notifications.model.NotificationModel;
-import br.edu.ufop.web.notifications.dtos.CreateNotificationDTO;
 import br.edu.ufop.web.notifications.domain.NotificationDomain;
+import br.edu.ufop.web.notifications.dtos.CreateNotificationDTO;
 import br.edu.ufop.web.notifications.dtos.NotificationDTO;
+import br.edu.ufop.web.notifications.model.NotificationModel;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NotificationConverter {
 
-    public static NotificationModel toNotificationModel(CreateNotificationDTO createNotificationDTO) {
+    public static NotificationDomain toNotificationDomain(CreateNotificationDTO createNotificationDTO) {
 
-        return NotificationModel.builder()
+        return NotificationDomain.builder()
                 .userId(createNotificationDTO.userId())
                 .service(createNotificationDTO.service())
                 .notificationType(createNotificationDTO.notificationType())
                 .subject(createNotificationDTO.subject())
                 .content(createNotificationDTO.content())
                 .build();
+
     }
 
-    public static NotificationModel toNotificationModel(NotificationDomain notifications){
+    public static NotificationModel toNotificationModel(NotificationDomain notificationDomain) {
 
         return NotificationModel.builder()
-                .id(notifications.getId())
-                .userId(notifications.getUserId())
-                .service(notifications.getService())
-                .notificationType(notifications.getNotificationType())
-                .subject(notifications.getSubject())
-                .content(notifications.getContent())
-                .sentAt(notifications.getSentAt())
-                .readAt(notifications.getReadAt())
+                .id(notificationDomain.getId())
+                .userId(notificationDomain.getUserId())
+                .service(notificationDomain.getService())
+                .notificationType(notificationDomain.getNotificationType())
+                .subject(notificationDomain.getSubject())
+                .content(notificationDomain.getContent())
+                .sentAt(notificationDomain.getSentAt())
+                .readAt(notificationDomain.getReadAt())
                 .build();
 
     }
 
-    public static NotificationDTO tonotificationDTO(NotificationModel notificationModel){
+    public static NotificationDTO toNotificationDTO(NotificationModel notificationModel) {
 
         return new NotificationDTO(
                 notificationModel.getId(),
@@ -46,11 +47,7 @@ public class NotificationConverter {
                 notificationModel.getSubject(),
                 notificationModel.getContent(),
                 notificationModel.getSentAt(),
-                notificationModel.getReadAt()
-        );
-
-
-
+                notificationModel.getReadAt());
     }
 
 }

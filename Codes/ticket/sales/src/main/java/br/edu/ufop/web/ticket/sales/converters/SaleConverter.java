@@ -3,9 +3,9 @@ package br.edu.ufop.web.ticket.sales.converters;
 import org.springframework.stereotype.Component;
 
 import br.edu.ufop.web.ticket.sales.domain.SaleDomain;
-import br.edu.ufop.web.ticket.sales.dtos.CreateSaleDTO;
-import br.edu.ufop.web.ticket.sales.dtos.SaleDTO;
-import br.edu.ufop.web.ticket.sales.dtos.UpdateSaleStatusDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.UpdateSaleStatusDTO;
+import br.edu.ufop.web.ticket.sales.dtos.sales.CreateSaleDTO;
+import br.edu.ufop.web.ticket.sales.dtos.sales.SaleDTO;
 import br.edu.ufop.web.ticket.sales.models.SaleModel;
 
 @Component

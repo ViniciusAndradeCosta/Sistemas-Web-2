@@ -1,7 +1,7 @@
 package br.edu.ufop.web.notifications.domain;
 
-import java.util.UUID;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import br.edu.ufop.web.notifications.enums.EnumNotificationType;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import lombok.Setter;
 public class NotificationDomain {
 
     private UUID id;
-    private UUID userId; //User
+    private UUID userId; //UserDomain
 
     private String service;
     private EnumNotificationType notificationType;

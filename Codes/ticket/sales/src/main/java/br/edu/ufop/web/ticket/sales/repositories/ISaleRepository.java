@@ -7,14 +7,14 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.ufop.web.ticket.sales.enums.SaleStatus;
+import br.edu.ufop.web.ticket.sales.enums.EnumSaleStatusType;
 import br.edu.ufop.web.ticket.sales.models.EventModel;
 import br.edu.ufop.web.ticket.sales.models.SaleModel;
 
 @Repository
 public interface ISaleRepository extends JpaRepository<SaleModel, UUID> {
     List<SaleModel> findByEventId(EventModel eventId);
-    List<SaleModel> findBySaleStatus(SaleStatus saleStatus);
+    List<SaleModel> findBySaleStatus(EnumSaleStatusType saleStatus);
     List<SaleModel> findBySaleDate(LocalDateTime saleDate);
     List<SaleModel> findByUserId(UUID userId);
 }

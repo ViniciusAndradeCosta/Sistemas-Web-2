@@ -1,4 +1,4 @@
-package br.edu.ufop.web.ticket.sales.services;
+package br.edu.ufop.web.ticket.sales.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ufop.web.ticket.sales.converters.SaleConverter;
 import br.edu.ufop.web.ticket.sales.domain.SaleDomain;
-import br.edu.ufop.web.ticket.sales.dtos.CreateSaleDTO;
-import br.edu.ufop.web.ticket.sales.dtos.DeleteSaleDTO;
-import br.edu.ufop.web.ticket.sales.dtos.SaleDTO;
-import br.edu.ufop.web.ticket.sales.dtos.UpdateSaleStatusDTO;
-import br.edu.ufop.web.ticket.sales.enums.SaleStatus;
+import br.edu.ufop.web.ticket.sales.dtos.events.DeleteSaleDTO;
+import br.edu.ufop.web.ticket.sales.dtos.events.UpdateSaleStatusDTO;
+import br.edu.ufop.web.ticket.sales.dtos.sales.CreateSaleDTO;
+import br.edu.ufop.web.ticket.sales.dtos.sales.SaleDTO;
+import br.edu.ufop.web.ticket.sales.enums.EnumSaleStatusType;
 import br.edu.ufop.web.ticket.sales.models.EventModel;
 import br.edu.ufop.web.ticket.sales.models.SaleModel;
 import br.edu.ufop.web.ticket.sales.repositories.IEventRepository;
@@ -48,7 +48,7 @@ public class SaleService {
         saleDomain.setEventId(event);
         saleDomain.setSaleDate(now);
         if (saleDomain.getSaleStatus() == null) {
-            saleDomain.setSaleStatus(SaleStatus.EM_ABERTO); // Default status
+            saleDomain.setSaleStatus(EnumSaleStatusType.EM_ABERTO); // Default status
         }
 
         

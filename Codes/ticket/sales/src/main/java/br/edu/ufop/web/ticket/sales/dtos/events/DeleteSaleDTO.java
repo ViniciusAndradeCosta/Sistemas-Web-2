@@ -1,4 +1,4 @@
-package br.edu.ufop.web.ticket.sales.dtos;
+package br.edu.ufop.web.ticket.sales.dtos.events;
 
 import java.util.UUID;
 
