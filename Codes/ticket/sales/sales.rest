@@ -9,7 +9,21 @@ POST http://localhost:4000/events
 Content-Type: application/json
 
 {
-    "description": "Peça de Teatro Y",
+    "description": "Show da Banda Rock Brasil",
+    "type": "SHOW",
+    "date": "2025-10-10T20:30:00",
+    "startSales": "2025-05-01T10:00:00",
+    "endSales": "2025-10-09T23:59:59",
+    "price": 150.00
+}
+
+
+###
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+    "description": "Peça de Teatro: A Comédia da Vida",
     "type": "TEATRO",
     "date": "2025-11-15T21:00:00",
     "startSales": "2025-03-01T09:00:00",
@@ -22,13 +36,12 @@ POST http://localhost:4000/events
 Content-Type: application/json
 
 {
-    "description": "Show da banda Y",
-    "type": "SHOW",
-    "date": "2025-11-15T21:00:00",
-    "startSales": "2025-03-01T09:00:00",
-    "endSales": "2025-11-14T23:59:59",
-    "price": 180.50
-
+    "description": "Palestra: Inovação e Tecnologia",
+    "type": "PALESTRA",
+    "date": "2025-09-20T19:00:00",
+    "startSales": "2025-04-15T08:00:00",
+    "endSales": "2025-09-19T23:59:59",
+    "price": 40.00
 }
 
 ###
@@ -36,28 +49,63 @@ POST http://localhost:4000/events
 Content-Type: application/json
 
 {
-    "description": "Show da banda X",
-    "type": "TEATRO",
-    "date": "2025-11-15T21:00:00",
-    "startSales": "2025-03-01T09:00:00",
-    "endSales": "2025-11-14T23:59:59",
-    "price": 150.50
+    "description": "Curso Intensivo de Programação Web",
+    "type": "CURSO",
+    "date": "2025-12-01T09:00:00",
+    "startSales": "2025-06-01T09:00:00",
+    "endSales": "2025-11-30T23:59:59",
+    "price": 300.00
 }
-
-
-
 ###
-PUT http://localhost:4000/events/e4d51e53-f568-4b6a-a578-4a94637d036b
+POST http://localhost:4000/events
 Content-Type: application/json
 
 {
-    "id": "e4d51e53-f568-4b6a-a578-4a94637d036b",
-    "description": "Peça de Teatro Y",
+    "description": "Show Acústico",
+    "type": "SHOW",
+    "date": "2025-08-30T22:00:00",
+    "startSales": "2025-04-01T09:00:00",
+    "endSales": "2025-08-29T23:59:59",
+    "price": 120.00
+}
+
+###
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+    "description": "Peça de Teatro: O Mistério da Casa",
     "type": "TEATRO",
-    "date": "2025-11-15T21:00:00",
-    "startSales": "2025-03-01T09:00:00",
-    "endSales": "2025-11-14T23:59:59",
-    "price": 175.0
+    "date": "2025-10-05T19:30:00",
+    "startSales": "2025-02-20T09:00:00",
+    "endSales": "2025-10-04T23:59:59",
+    "price": 95.00
+}
+
+###
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+    "description": "Palestra: Inteligência Artificial no Futuro do Trabalho",
+    "type": "PALESTRA",
+    "date": "2025-07-12T18:00:00",
+    "startSales": "2025-03-10T10:00:00",
+    "endSales": "2025-07-11T23:59:59",
+    "price": 60.00
+}
+
+###
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+    "description": "Curso de Fotografia Digital",
+    "type": "CURSO",
+    "date": "2025-09-01T09:00:00",
+    "startSales": "2025-05-01T09:00:00",
+    "endSales": "2025-08-31T23:59:59",
+    "price": 250.00
 }
 
 ###
@@ -65,7 +113,7 @@ DELETE http://localhost:4000/events/delete
 Content-Type: application/json
 
 {
-    "id": "54997542-e69d-4cef-956b-8a5bbc761e16"
+    "id": "77614e46-bbb1-47a8-83bf-fafac116503d"
 }
 
 ###
@@ -122,5 +170,5 @@ DELETE http://localhost:4000/sales/delete
 Content-Type: application/json
 
 {
-    "id": "f15daa6a-adce-4333-afe0-ddb502689567"
+    "id": "a68e1b5b-f928-4094-83ff-6e1721415a52"
 }

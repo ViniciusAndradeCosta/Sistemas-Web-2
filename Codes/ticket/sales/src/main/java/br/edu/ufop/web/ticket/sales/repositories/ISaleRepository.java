@@ -13,7 +13,7 @@ import br.edu.ufop.web.ticket.sales.models.SaleModel;
 
 @Repository
 public interface ISaleRepository extends JpaRepository<SaleModel, UUID> {
-    List<SaleModel> findByEventId(EventModel eventId);
+     List<SaleModel> findByEvent(EventModel event); 
     List<SaleModel> findBySaleStatus(EnumSaleStatusType saleStatus);
     List<SaleModel> findBySaleDate(LocalDateTime saleDate);
     List<SaleModel> findByUserId(UUID userId);
